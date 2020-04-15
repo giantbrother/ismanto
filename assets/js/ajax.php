@@ -12,6 +12,7 @@
 		tampilMrt();
 		tampilLrt();
 		tampilKci();
+		tampilMrtpnp();
 		<?php
 			if ($this->session->flashdata('msg') != '') {
 				echo "effect_msg();";
@@ -411,6 +412,134 @@
 	})
 
 	$('#update-kci').on('hidden.bs.modal', function () {
+	  $('.form-msg').html('');
+	})
+
+
+	//MRT PNP
+
+
+	function tampilMrtpnp() {
+		$.get('<?php echo base_url('Mrtpnp/tampil'); ?>', function(data) {
+			MyTable.fnDestroy();
+			$('#data-mrtpnp').html(data);
+			refresh();
+		});
+	}
+
+	var idnye;
+	$(document).on("click", ".konfirmasiHapus-mrtpnp", function() {
+		id = $(this).attr("data-id");
+	})
+	$(document).on("click", ".hapus-datamrtpnp", function() {
+		var idnye = id;
+		
+		$.ajax({
+			method: "POST",
+			url: "<?php echo base_url('Mrtpnp/delete'); ?>",
+			data: "id=" +id
+		})
+		.done(function(data) {
+			$('#konfirmasiHapus').modal('hide');
+			tampilMrtpnp();
+			$('.msg').html(data);
+			effect_msg();
+		})
+	})
+
+	$(document).on("click", ".update-dataMrtpnp", function() {
+		var id = $(this).attr("data-id");
+		
+		$.ajax({
+			method: "POST",
+			url: "<?php echo base_url('Mrtpnp/update'); ?>",
+			data: "id=" +id
+		})
+		.done(function(data) {
+			$('#tempat-modal').html(data);
+			$('#update-mrtpnp').modal('show');
+		})
+	})
+
+	$(document).on("click", ".detail-dataMrtpnp", function() {
+		var id = $(this).attr("data-id");
+		
+		$.ajax({
+			method: "POST",
+			url: "<?php echo base_url('Mrtpnp/detail'); ?>",
+			data: "id=" +id
+		})
+		.done(function(data) {
+			$('#tempat-modal').html(data);
+			$('#tabel-detail').dataTable({
+				  "paging": true,
+				  "lengthChange": false,
+				  "searching": true,
+				  "ordering": true,
+				  "info": true,
+				  "autoWidth": false
+				});
+			$('#detail-mrtpnp').modal('show');
+		})
+	})
+
+	$('#form-tambah-mrtpnp').submit(function(e) {
+		var data = $(this).serialize();
+
+		$.ajax({
+			method: 'POST',
+			url: '<?php echo base_url('Mrtpnp/prosesTambah'); ?>',
+			data: data
+		})
+		.done(function(data) {
+			var out = jQuery.parseJSON(data);
+
+			tampilMrtpnp();
+			if (out.status == 'form') {
+				$('.form-msg').html(out.msg);
+				effect_msg_form();
+			} else {
+				document.getElementById("form-tambah-mrtpnp").reset();
+				$('#tambah-mrtpnp').modal('hide');
+				$('.msg').html(out.msg);
+				effect_msg();
+			}
+		})
+		
+		e.preventDefault();
+	});
+
+	$(document).on('submit', '#form-update-mrtpnp', function(e){
+		var data = $(this).serialize();
+
+		$.ajax({
+			method: 'POST',
+			url: '<?php echo base_url('Mrtpnp/prosesUpdate'); ?>',
+			data: data
+		})
+		.done(function(data) {
+			var out = jQuery.parseJSON(data);
+
+			tampilMrtpnp();
+			if (out.status == 'form') {
+				$('.form-msg').html(out.msg);
+				effect_msg_form();
+			} else {
+				document.getElementById("form-update-mrtpnp").reset();
+				$('#update-mrtpnp').modal('hide');
+				$('.msg').html(out.msg);
+				effect_msg();
+			}
+		})
+		
+		e.preventDefault();
+	});
+
+	$('#tambah-mrtpnp').on('hidden.bs.modal', function () {
+	  $('.form-msg').html('');
+	})
+
+	$('#update-mrtpnp').on('hidden.bs.modal', function () {
 	  $('.form-msg').html('');
 	})
 </script>

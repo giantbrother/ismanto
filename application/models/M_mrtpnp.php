@@ -4,9 +4,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class M_mrtpnp extends CI_Model {
 	
 	public function select_all() {
-		$this->db->select('*');
+		$this->db->select('mrt.*', FALSE);
+		$this->db->select('mrtpnp.*', FALSE);
 		$this->db->from('mrtpnp');
-
+		$this->db->join('mrt', 'mrt.id = mrtpnp.id_stasiun');
 		$data = $this->db->get();
 
 		return $data->result();
@@ -14,6 +15,13 @@ class M_mrtpnp extends CI_Model {
 
 	public function select_by_id($id) {
 		$sql = "SELECT * FROM mrtpnp WHERE id = '{$id}'";
+
+		$data = $this->db->query($sql);
+
+		return $data->row();
+	}
+	public function select_by_detail($id) {
+		$sql = "SELECT * FROM mrtpnp INNER JOIN mrt ON mrtpnp.id_stasiun = mrt.id WHERE mrtpnp.id_stasiun = mrt.id AND mrtpnp.id = '{$id}'";
 
 		$data = $this->db->query($sql);
 
@@ -27,7 +35,13 @@ class M_mrtpnp extends CI_Model {
 
 		return $data->row();
 	}
+	public function cari_st() {
+		$sql = "SELECT * FROM mrt";
 
+		$data = $this->db->query($sql);
+
+		return $data->result();
+	}
 
 	public function insert($data) {
 		$table      = 'mrtpnp';
@@ -50,7 +64,7 @@ class M_mrtpnp extends CI_Model {
 	}
 
 	public function update($data) {
-		$sql = "UPDATE mrtpnp SET nama='" .$data['nama'] ."' , tanggal='" .$data['tanggal'] ."' WHERE id='" .$data['id'] ."'";
+		$sql = "UPDATE mrtpnp SET pnp='" .$data['pnp'] ."' , tanggal='" .$data['tanggal'] ."', id_stasiun='" .$data['id_stasiun'] ."' WHERE id='" .$data['idnye'] ."'";
 		
 		$this->db->query($sql);
 
@@ -79,5 +93,5 @@ class M_mrtpnp extends CI_Model {
 	}
 }
 
-/* End of file M_kota.php */
-/* Location: ./application/models/M_kota.php */
+/* End of file M_mrtpnp.php */
+/* Location: ./application/models/M_mrtpnp.php */

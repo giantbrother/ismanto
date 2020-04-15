@@ -33,7 +33,7 @@
             ?>
             <tr>
               <td><?php echo $no; ?></td>
-              <td><?php echo $mrtpnp->id_stasiun; ?></td>
+              <td><?php echo $mrtpnp->nama; ?></td>
               <td><?php echo $mrtpnp->tanggal; ?></td>
               <td><?php echo $mrtpnp->pnp; ?></td>
               <td class="text-center" style="min-width:230px;">

@@ -60,6 +60,7 @@ class Mrtpnp extends AUTH_Controller {
 
 		$id 				= trim($_POST['id']);
 		$data['dataMrtpnp'] 	= $this->M_mrtpnp->select_by_id($id);
+		$data['datast'] 	= $this->M_mrtpnp->cari_st($id);
 
 		echo show_my_modal('modals/modal_update_mrtpnp', 'update-mrtpnp', $data);
 	}
@@ -68,17 +69,15 @@ class Mrtpnp extends AUTH_Controller {
 
 
 		$this->form_validation->set_rules('pnp', 'pnp', 'trim|required');	
-		$this->form_validation->set_rules('tanggal', 'tanggal', 'trim|required');
-		
-		$this->form_validation->set_rules('id_stasiun', 'id_stasiun', 'trim|required');
-
+		$this->form_validation->set_rules('tanggal', 'tanggal', 'trim|required');	
+		//$this->form_validation->set_rules('id_stasiun', 'id', 'trim|required');
+		//$this->form_validation->set_rules('id', 'idnye', 'trim|required');
 
 
 
 		$data 	= $this->input->post();
 		if ($this->form_validation->run() == TRUE) {
 			$result = $this->M_mrtpnp->update($data);
-
 			if ($result > 0) {
 				$out['status'] = '';
 				$out['msg'] = show_succ_msg('Data  Berhasil diupdate', '20px');
@@ -101,7 +100,7 @@ class Mrtpnp extends AUTH_Controller {
 		if ($result > 0) {
 			echo show_succ_msg('Data Penumpang  Berhasil dihapus', '20px');
 		} else {
-			echo show_err_msg('Data Kota Penumpang dihapus', '20px');
+			echo show_err_msg('Data Penumpang dihapus', '20px');
 		}
 	}
 
@@ -109,11 +108,11 @@ class Mrtpnp extends AUTH_Controller {
 		$data['userdata'] 	= $this->userdata;
 
 		$id 				= trim($_POST['id']);
-		$data['mrtpnp'] = $this->M_mrtpnp->select_by_id($id);
+		$data['mrtpnp'] = $this->M_mrtpnp->select_by_detail($id);
 		$data['jumlahMrtpnp'] = $this->M_mrtpnp->total_rows();
 		$data['dataMrtpnp'] = $this->M_mrtpnp->select_by_stasiun($id);
-
-		echo show_my_modal('modals/modal_detail_mrt', 'detail-mrt', $data, 'lg');
+		
+		echo show_my_modal('modals/modal_detail_mrtpnp', 'detail-mrtpnp', $data, 'lg');
 	}
 
 	public function export() {
