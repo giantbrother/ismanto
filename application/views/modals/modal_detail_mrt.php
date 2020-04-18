@@ -11,12 +11,25 @@
           </tr>
         </thead>
         <tbody id="data-mrt">
+<<<<<<< HEAD
          
               <tr>
                <td><?php echo $mrt->nama; ?></td>
                
               </tr>
          
+=======
+          <?php
+            foreach ($dataMrt as $mrt) {
+              ?>
+              <tr>
+                <td style="min-width:230px;"><?php echo $mrt->nama; ?></td>
+               
+              </tr>
+              <?php
+            }
+          ?>
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
         </tbody>
       </table>
   </div>

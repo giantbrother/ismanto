@@ -19,6 +19,7 @@ class M_railink extends CI_Model {
 
 		return $data->row();
 	}
+<<<<<<< HEAD
 	
 	public function select_by_detail($id) {
 		$sql = "SELECT * FROM railink WHERE id = '{$id}'";
@@ -43,11 +44,17 @@ class M_railink extends CI_Model {
 
 		return $data->result();
 	}
+=======
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 
 
 
 	public function insert($data) {
+<<<<<<< HEAD
 		$sql = "INSERT INTO railink VALUES('" .$data['id'] ."','" .$data['nama'] ."', status=1)";
+=======
+		$sql = "INSERT INTO railink VALUES('','" .$data['nama'] ."'	,'" .$data['tanggal'] ."')";
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 	
 		$this->db->query($sql);
 
@@ -76,8 +83,13 @@ class M_railink extends CI_Model {
 		return $this->db->affected_rows();
 	}
 
+<<<<<<< HEAD
 	public function check_pnp($nama) {
 		$this->db->where('id', $nama);
+=======
+	public function check_nama($nama) {
+		$this->db->where('nama', $nama);
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 		$data = $this->db->get('railink');
 
 		return $data->num_rows();

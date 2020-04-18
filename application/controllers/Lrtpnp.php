@@ -32,6 +32,7 @@ class Lrtpnp extends AUTH_Controller {
 		
 
 		$this->form_validation->set_rules('pnp', 'pnp', 'trim|required');	
+<<<<<<< HEAD
 		$this->form_validation->set_rules('tanggal', 'tanggal', 'trim|required');	
 		$this->form_validation->set_rules('id_stasiun', 'id', 'trim|required');
 		$this->form_validation->set_rules('id', 'id', 'trim|required');
@@ -54,6 +55,28 @@ class Lrtpnp extends AUTH_Controller {
 		}
 
 		echo json_encode($out);
+=======
+		$this->form_validation->set_rules('tanggal', 'tanggal', 'trim|required');
+		$this->form_validation->set_rules('id', 'id', 'trim|required');
+		$this->form_validation->set_rules('id_stasiun', 'id_stasiun', 'trim|required');
+		
+		$data = $this->input->post();
+		if (!empty($this->input->post('pnp')) 
+			&& !empty($this->input->post('tanggal')) 
+			&& !empty($this->input->post('id'))
+			&& !empty($this->input->post('id_stasiun'))) {
+			$result = $this->M_lrtpnp->insert($data);
+			if ($result > 0) {
+				$out['msg'] = show_succ_msg('Data Input Berhasil ditambahkan', '20px');
+			} else {
+				$out['msg'] = show_err_msg('Data Input Gagal ditambahkan', '20px');
+			}
+		} else {
+			$out['msg'] = 'Data tidak boleh kosong';
+		}
+		$this->session->set_flashdata('error', $out['msg']);
+		redirect(base_url('lrtpnp'));
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 	}
 
 
@@ -61,6 +84,7 @@ class Lrtpnp extends AUTH_Controller {
 		$data['userdata'] 	= $this->userdata;
 
 		$id 				= trim($_POST['id']);
+<<<<<<< HEAD
 		$data['dataLrtpnp'] 	= $this->M_lrtpnp->select_by_id($id);
 		$data['datast'] 	= $this->M_lrtpnp->cari_st($id);
 		
@@ -73,6 +97,15 @@ class Lrtpnp extends AUTH_Controller {
 		//$this->form_validation->set_rules('id_stasiun', 'id', 'trim|required');
 		//$this->form_validation->set_rules('id', 'idnye', 'trim|required');
 
+=======
+		$data['dataLrt'] 	= $this->M_lrtpnp->select_by_id($id);
+
+		echo show_my_modal('modals/modal_update_lrt', 'update-lrt', $data);
+	}
+
+	public function prosesUpdate() {
+		$this->form_validation->set_rules('nama', 'Nama', 'trim|required');
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 
 		$data 	= $this->input->post();
 		if ($this->form_validation->run() == TRUE) {
@@ -80,10 +113,17 @@ class Lrtpnp extends AUTH_Controller {
 
 			if ($result > 0) {
 				$out['status'] = '';
+<<<<<<< HEAD
 				$out['msg'] = show_succ_msg('Data Berhasil diupdate', '20px');
 			} else {
 				$out['status'] = '';
 				$out['msg'] = show_succ_msg('Data  Gagal diupdate', '20px');
+=======
+				$out['msg'] = show_succ_msg('Data Nama Berhasil diupdate', '20px');
+			} else {
+				$out['status'] = '';
+				$out['msg'] = show_succ_msg('Data KoNamata Gagal diupdate', '20px');
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 			}
 		} else {
 			$out['status'] = 'form';
@@ -108,11 +148,19 @@ class Lrtpnp extends AUTH_Controller {
 		$data['userdata'] 	= $this->userdata;
 
 		$id 				= trim($_POST['id']);
+<<<<<<< HEAD
 		$data['lrtpnp'] = $this->M_lrtpnp->select_by_detail($id);
 		$data['jumlahLrtpnp'] = $this->M_lrtpnp->total_rows();
 		$data['dataLrtpnp'] = $this->M_lrtpnp->select_by_stasiun($id);
 
 		echo show_my_modal('modals/modal_detail_lrtpnp', 'detail-lrtpnp', $data, 'lg');
+=======
+		$data['lrtpnp'] = $this->M_lrtpnp->select_by_id($id);
+		$data['jumlahLrtpnp'] = $this->M_lrtpnp->total_rows();
+		$data['dataLrtpnp'] = $this->M_lrtpnp->select_by_stasiun($id);
+
+		echo show_my_modal('modals/modal_detail_lrt', 'detail-lrt', $data, 'lg');
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 	}
 
 	public function export() {
@@ -128,15 +176,22 @@ class Lrtpnp extends AUTH_Controller {
 
 		$objPHPExcel->getActiveSheet()->SetCellValue('A1', "ID"); 
 		$objPHPExcel->getActiveSheet()->SetCellValue('B1', "Nama Stasiun");
+<<<<<<< HEAD
 		$objPHPExcel->getActiveSheet()->SetCellValue('C1', "Jumlah Penumpang");
 		$objPHPExcel->getActiveSheet()->SetCellValue('D1', "Tanggal");
+=======
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 
 		$rowCount = 2;
 		foreach($data as $value){
 		    $objPHPExcel->getActiveSheet()->SetCellValue('A'.$rowCount, $value->id); 
+<<<<<<< HEAD
 		    $objPHPExcel->getActiveSheet()->SetCellValue('B'.$rowCount, $value->id_stasiun);
 			$objPHPExcel->getActiveSheet()->SetCellValue('C'.$rowCount, $value->pnp); 
 			$objPHPExcel->getActiveSheet()->SetCellValue('D'.$rowCount, $value->tanggal);
+=======
+		    $objPHPExcel->getActiveSheet()->SetCellValue('B'.$rowCount, $value->nama); 
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 		    $rowCount++; 
 		} 
 
@@ -176,6 +231,7 @@ class Lrtpnp extends AUTH_Controller {
 				$index = 0;
 				foreach ($sheetData as $key => $value) {
 					if ($key != 1) {
+<<<<<<< HEAD
 						$check = $this->M_lrtpnp->check_pnp($value['B']);
 
 						if ($check != 1) {
@@ -185,6 +241,12 @@ class Lrtpnp extends AUTH_Controller {
 							$resultData[$index]['id_stasiun'] = ucwords($value['B']);
 							$resultData[$index]['status'] = ucwords($value['E']);
 							
+=======
+						$check = $this->M_lrtpnp->check_nama($value['B']);
+
+						if ($check != 1) {
+							$resultData[$index]['nama'] = ucwords($value['B']);
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 						}
 					}
 					$index++;
@@ -195,12 +257,21 @@ class Lrtpnp extends AUTH_Controller {
 				if (count($resultData) != 0) {
 					$result = $this->M_lrtpnp->insert_batch($resultData);
 					if ($result > 0) {
+<<<<<<< HEAD
 						$this->session->set_flashdata('msg', show_succ_msg('Data Penumpang Lrt Berhasil diimport ke database'));
 						redirect('Lrtpnp');
 					}
 				} else {
 					$this->session->set_flashdata('msg', show_msg('Data  Penumpang Lrt Gagal diimport ke database (Data Sudah terupdate)', 'warning', 'fa-warning'));
 					redirect('Lrtpnp');
+=======
+						$this->session->set_flashdata('msg', show_succ_msg('Data Lrt Berhasil diimport ke database'));
+						redirect('Lrt');
+					}
+				} else {
+					$this->session->set_flashdata('msg', show_msg('Data Lrt Gagal diimport ke database (Data Sudah terupdate)', 'warning', 'fa-warning'));
+					redirect('Lrt');
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 				}
 
 			}
@@ -208,5 +279,10 @@ class Lrtpnp extends AUTH_Controller {
 	}
 }
 
+<<<<<<< HEAD
 /* End of file Lrtpnp.php */
 /* Location: ./application/controllers/Lrtpnp.php */
+=======
+/* End of file Lrt.php */
+/* Location: ./application/controllers/Lrt.php */
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e

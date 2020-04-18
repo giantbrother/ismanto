@@ -33,7 +33,11 @@
             ?>
             <tr>
               <td><?php echo $no; ?></td>
+<<<<<<< HEAD
               <td><?php echo $lrtpnp->nama; ?></td>
+=======
+              <td><?php echo $lrtpnp->id_stasiun; ?></td>
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
               <td><?php echo $lrtpnp->tanggal; ?></td>
               <td><?php echo $lrtpnp->pnp; ?></td>
               <td class="text-center" style="min-width:230px;">
@@ -61,9 +65,16 @@
 
 <div id="tempat-modal"></div>
 
+<<<<<<< HEAD
 <?php show_my_confirm('konfirmasiHapus', 'hapus-datalrtpnp', 'Hapus Data Ini?', 'Ya, Hapus Data Ini'); ?>
 <?php
   $data['judul'] = 'Penumpang';
   $data['url'] = 'lrtpnp/import';
+=======
+<?php show_my_confirm('konfirmasiHapus', 'hapus-dataLrtpnp', 'Hapus Data Ini?', 'Ya, Hapus Data Ini'); ?>
+<?php
+  $data['judul'] = 'Penumpang';
+  $data['url'] = 'Lrtpnp/import';
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
   echo show_my_modal('modals/modal_import', 'import-lrtpnp', $data);
 ?>

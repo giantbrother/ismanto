@@ -1,6 +1,7 @@
 <?php
 
 error_reporting(0);
+<<<<<<< HEAD
 $koneksi = mysqli_connect("localhost","ismantoi_test","Cctv2017 ") or die("Koneksi Gagal !" . mysqli_error());
 mysqli_select_db($koneksi,"ismantoi_test");
 
@@ -9,6 +10,15 @@ echo "<br />";
 ?>
 
 
+=======
+$koneksi = mysqli_connect("localhost","root","Cctv2017") or die("Koneksi Gagal !" . mysqli_error());
+mysqli_select_db($koneksi,"cendana");
+
+$db = mysqli_select_db ($koneksi,"cendana") or die ("database tidak ada!". mysqli_error());
+echo "<br />";
+?>
+
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 <?php
 $tanggal=$_POST['dari'];
 $tanggal=$_POST['sampai'];

@@ -33,7 +33,11 @@
             ?>
             <tr>
               <td><?php echo $no; ?></td>
+<<<<<<< HEAD
               <td><?php echo $kcipnp->nama; ?></td>
+=======
+              <td><?php echo $kcipnp->id_stasiun; ?></td>
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
               <td><?php echo $kcipnp->tanggal; ?></td>
               <td><?php echo $kcipnp->pnp; ?></td>
               <td class="text-center" style="min-width:230px;">
@@ -61,7 +65,11 @@
 
 <div id="tempat-modal"></div>
 
+<<<<<<< HEAD
 <?php show_my_confirm('konfirmasiHapus', 'hapus-datakcipnp', 'Hapus Data Ini?', 'Ya, Hapus Data Ini'); ?>
+=======
+<?php show_my_confirm('konfirmasiHapus', 'hapus-dataKcipnp', 'Hapus Data Ini?', 'Ya, Hapus Data Ini'); ?>
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 <?php
   $data['judul'] = 'Stasiun';
   $data['url'] = 'kcipnp/import';

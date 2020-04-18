@@ -19,6 +19,7 @@ class M_mrt extends CI_Model {
 
 		return $data->row();
 	}
+<<<<<<< HEAD
 	public function select_by_detail($id) {
 		$sql = "SELECT * FROM mrt WHERE id = '{$id}'";
 
@@ -42,10 +43,13 @@ class M_mrt extends CI_Model {
 
 		return $data->result();
 	}
+=======
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 
 
 
 	public function insert($data) {
+<<<<<<< HEAD
 		$sql = "INSERT INTO mrt VALUES('" .$data['id'] ."','" .$data['nama'] ."', status=1)";
 	
 		$this->db->query($sql);
@@ -53,6 +57,21 @@ class M_mrt extends CI_Model {
 		return $this->db->affected_rows();
 	}
 
+=======
+		$table      = 'mrt';
+		$data = array(
+			//tabel di database => name di form
+			'id'            => $this->input->post('id', TRUE),
+			'nama'            => $this->input->post('nama', TRUE),
+		
+			'status' =>1,
+			);
+			$this->db->insert('mrt', $data);
+			return $this->db->affected_rows();
+	}
+
+
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 	public function insert_batch($data) {
 		$this->db->insert_batch('mrt', $data);
 		
@@ -75,8 +94,13 @@ class M_mrt extends CI_Model {
 		return $this->db->affected_rows();
 	}
 
+<<<<<<< HEAD
 	public function check_pnp($nama) {
 		$this->db->where('id', $nama);
+=======
+	public function check_nama($nama) {
+		$this->db->where('nama', $nama);
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 		$data = $this->db->get('mrt');
 
 		return $data->num_rows();

@@ -11,7 +11,11 @@ class Railinkpnp extends AUTH_Controller {
 		$data['userdata'] 	= $this->userdata;
 		$data['dataRailinkpnp'] 	= $this->M_railinkpnp->select_all();
 
+<<<<<<< HEAD
 		$data['page'] 		= "Railink";
+=======
+		$data['page'] 		= "Rute";
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 		$data['judul'] 		= "Data Pnp Railink";
 		$data['deskripsi'] 	= "List Data Penumpang Railink";
 
@@ -35,6 +39,7 @@ class Railinkpnp extends AUTH_Controller {
 		$this->form_validation->set_rules('id', 'id', 'trim|required');
 		$this->form_validation->set_rules('id_stasiun', 'id_stasiun', 'trim|required');
 		
+<<<<<<< HEAD
 		$data 	= $this->input->post();
 		if ($this->form_validation->run() == TRUE) {
 			$result = $this->M_railinkpnp->insert($data);
@@ -51,6 +56,24 @@ class Railinkpnp extends AUTH_Controller {
 		}
 
 		echo json_encode($out);
+=======
+		$data = $this->input->post();
+		if (!empty($this->input->post('pnp')) 
+			&& !empty($this->input->post('tanggal')) 
+			&& !empty($this->input->post('id'))
+			&& !empty($this->input->post('id_stasiun'))) {
+			$result = $this->M_railinkpnp->insert($data);
+			if ($result > 0) {
+				$out['msg'] = show_succ_msg('Data Input Berhasil ditambahkan', '20px');
+			} else {
+				$out['msg'] = show_err_msg('Data Input Gagal ditambahkan', '20px');
+			}
+		} else {
+			$out['msg'] = 'Data tidak boleh kosong';
+		}
+		$this->session->set_flashdata('error', $out['msg']);
+		redirect(base_url('railinkpnp'));
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 	}
 
 
@@ -59,6 +82,7 @@ class Railinkpnp extends AUTH_Controller {
 
 		$id 				= trim($_POST['id']);
 		$data['dataRailinkpnp'] 	= $this->M_railinkpnp->select_by_id($id);
+<<<<<<< HEAD
 		$data['datast'] 	= $this->M_railinkpnp->cari_st($id);
 		echo show_my_modal('modals/modal_update_railinkpnp', 'update-railinkpnp', $data);
 	}
@@ -69,6 +93,14 @@ class Railinkpnp extends AUTH_Controller {
 		$this->form_validation->set_rules('tanggal', 'tanggal', 'trim|required');	
 		//$this->form_validation->set_rules('id_stasiun', 'id', 'trim|required');
 		//$this->form_validation->set_rules('id', 'idnye', 'trim|required');
+=======
+
+		echo show_my_modal('modals/modal_update_raininkpnp', 'update-railinkpnp', $data);
+	}
+
+	public function prosesUpdate() {
+		$this->form_validation->set_rules('nama', 'Nama', 'trim|required');
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 
 		$data 	= $this->input->post();
 		if ($this->form_validation->run() == TRUE) {
@@ -76,10 +108,17 @@ class Railinkpnp extends AUTH_Controller {
 
 			if ($result > 0) {
 				$out['status'] = '';
+<<<<<<< HEAD
 				$out['msg'] = show_succ_msg('Data Berhasil diupdate', '20px');
 			} else {
 				$out['status'] = '';
 				$out['msg'] = show_succ_msg('Data Gagal diupdate', '20px');
+=======
+				$out['msg'] = show_succ_msg('Data Nama Berhasil diupdate', '20px');
+			} else {
+				$out['status'] = '';
+				$out['msg'] = show_succ_msg('Data Nama Gagal diupdate', '20px');
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 			}
 		} else {
 			$out['status'] = 'form';
@@ -104,11 +143,19 @@ class Railinkpnp extends AUTH_Controller {
 		$data['userdata'] 	= $this->userdata;
 
 		$id 				= trim($_POST['id']);
+<<<<<<< HEAD
 		$data['railinkpnp'] = $this->M_railinkpnp->select_by_detail($id);
 		$data['jumlahRailinkpnp'] = $this->M_railinkpnp->total_rows();
 		$data['dataRailinkpnp'] = $this->M_railinkpnp->select_by_stasiun($id);
 
 		echo show_my_modal('modals/modal_detail_railinkpnp', 'detail-railinkpnp', $data, 'lg');
+=======
+		$data['railinkpnp'] = $this->M_railinkpnp->select_by_id($id);
+		$data['jumlahRailinkpnp'] = $this->M_railinkpnp->total_rows();
+		$data['dataRailinkpnp'] = $this->M_railinkpnp->select_by_stasiun($id);
+
+		echo show_my_modal('modals/modal_detail_railink', 'detail-railink', $data, 'lg');
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 	}
 
 	public function export() {
@@ -124,15 +171,22 @@ class Railinkpnp extends AUTH_Controller {
 
 		$objPHPExcel->getActiveSheet()->SetCellValue('A1', "ID"); 
 		$objPHPExcel->getActiveSheet()->SetCellValue('B1', "Nama Stasiun");
+<<<<<<< HEAD
 		$objPHPExcel->getActiveSheet()->SetCellValue('C1', "Jumlah Penumpang");
 		$objPHPExcel->getActiveSheet()->SetCellValue('D1', "Tanggal");
+=======
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 
 		$rowCount = 2;
 		foreach($data as $value){
 		    $objPHPExcel->getActiveSheet()->SetCellValue('A'.$rowCount, $value->id); 
+<<<<<<< HEAD
 		    $objPHPExcel->getActiveSheet()->SetCellValue('B'.$rowCount, $value->id_stasiun);
 			$objPHPExcel->getActiveSheet()->SetCellValue('C'.$rowCount, $value->pnp); 
 			$objPHPExcel->getActiveSheet()->SetCellValue('D'.$rowCount, $value->tanggal);  
+=======
+		    $objPHPExcel->getActiveSheet()->SetCellValue('B'.$rowCount, $value->nama); 
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 		    $rowCount++; 
 		} 
 
@@ -172,6 +226,7 @@ class Railinkpnp extends AUTH_Controller {
 				$index = 0;
 				foreach ($sheetData as $key => $value) {
 					if ($key != 1) {
+<<<<<<< HEAD
 						$check = $this->M_railinkpnp->check_pnp($value['B']);
 
 						if ($check != 1) {
@@ -180,6 +235,12 @@ class Railinkpnp extends AUTH_Controller {
 							$resultData[$index]['tanggal'] = ucwords($value['D']);
 							$resultData[$index]['id_stasiun'] = ucwords($value['B']);
 							$resultData[$index]['status'] = ucwords($value['E']);
+=======
+						$check = $this->M_railinkpnp->check_nama($value['B']);
+
+						if ($check != 1) {
+							$resultData[$index]['nama'] = ucwords($value['B']);
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 						}
 					}
 					$index++;

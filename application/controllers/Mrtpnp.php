@@ -11,7 +11,11 @@ class Mrtpnp extends AUTH_Controller {
 		$data['userdata'] 	= $this->userdata;
 		$data['dataMrtpnp'] 	= $this->M_mrtpnp->select_all();
 
+<<<<<<< HEAD
 		$data['page'] 		= "MRT";
+=======
+		$data['page'] 		= "Rute";
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 		$data['judul'] 		= "Data Pnp MRT";
 		$data['deskripsi'] 	= "List Data Penumpang MRT";
 
@@ -32,6 +36,7 @@ class Mrtpnp extends AUTH_Controller {
 		
 
 		$this->form_validation->set_rules('pnp', 'pnp', 'trim|required');	
+<<<<<<< HEAD
 		$this->form_validation->set_rules('tanggal', 'tanggal', 'trim|required');	
 		$this->form_validation->set_rules('id_stasiun', 'id', 'trim|required');
 		$this->form_validation->set_rules('id', 'id', 'trim|required');
@@ -54,6 +59,28 @@ class Mrtpnp extends AUTH_Controller {
 		}
 
 		echo json_encode($out);
+=======
+		$this->form_validation->set_rules('tanggal', 'tanggal', 'trim|required');
+		$this->form_validation->set_rules('id', 'id', 'trim|required');
+		$this->form_validation->set_rules('id_stasiun', 'id_stasiun', 'trim|required');
+		
+		$data = $this->input->post();
+		if (!empty($this->input->post('pnp')) 
+			&& !empty($this->input->post('tanggal')) 
+			&& !empty($this->input->post('id'))
+			&& !empty($this->input->post('id_stasiun'))) {
+			$result = $this->M_mrtpnp->insert($data);
+			if ($result > 0) {
+				$out['msg'] = show_succ_msg('Data Input Berhasil ditambahkan', '20px');
+			} else {
+				$out['msg'] = show_err_msg('Data Input Gagal ditambahkan', '20px');
+			}
+		} else {
+			$out['msg'] = 'Data tidak boleh kosong';
+		}
+		$this->session->set_flashdata('error', $out['msg']);
+		redirect(base_url('mrtpnp'));
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 	}
 
 
@@ -112,7 +139,11 @@ class Mrtpnp extends AUTH_Controller {
 		$id 				= trim($_POST['id']);
 		$data['mrtpnp'] = $this->M_mrtpnp->select_by_detail($id);
 		$data['jumlahMrtpnp'] = $this->M_mrtpnp->total_rows();
+<<<<<<< HEAD
 		//$data['dataMrtpnp'] = $this->M_mrtpnp->select_by_stasiun($id);
+=======
+		$data['dataMrtpnp'] = $this->M_mrtpnp->select_by_stasiun($id);
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 		
 		echo show_my_modal('modals/modal_detail_mrtpnp', 'detail-mrtpnp', $data, 'lg');
 	}
@@ -129,24 +160,39 @@ class Mrtpnp extends AUTH_Controller {
 		$objPHPExcel->setActiveSheetIndex(0); 
 
 		$objPHPExcel->getActiveSheet()->SetCellValue('A1', "ID"); 
+<<<<<<< HEAD
 		$objPHPExcel->getActiveSheet()->SetCellValue('B1', "Nama Stasiun");
 		$objPHPExcel->getActiveSheet()->SetCellValue('C1', "Jumlah Penumpang");
 		$objPHPExcel->getActiveSheet()->SetCellValue('D1', "Tanggal");
+=======
+		$objPHPExcel->getActiveSheet()->SetCellValue('B1', "Nama Kota");
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 
 		$rowCount = 2;
 		foreach($data as $value){
 		    $objPHPExcel->getActiveSheet()->SetCellValue('A'.$rowCount, $value->id); 
+<<<<<<< HEAD
 		    $objPHPExcel->getActiveSheet()->SetCellValue('B'.$rowCount, $value->id_stasiun);
 			$objPHPExcel->getActiveSheet()->SetCellValue('C'.$rowCount, $value->pnp); 
 			$objPHPExcel->getActiveSheet()->SetCellValue('D'.$rowCount, $value->tanggal);  
+=======
+		    $objPHPExcel->getActiveSheet()->SetCellValue('B'.$rowCount, $value->nama); 
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 		    $rowCount++; 
 		} 
 
 		$objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel); 
+<<<<<<< HEAD
 		$objWriter->save('./assets/excel/Data Mrtpnp.xlsx'); 
 
 		$this->load->helper('download');
 		force_download('./assets/excel/Data Mrtpnp.xlsx', NULL);
+=======
+		$objWriter->save('./assets/excel/Data Kota.xlsx'); 
+
+		$this->load->helper('download');
+		force_download('./assets/excel/Data Kota.xlsx', NULL);
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 	}
 
 	public function import() {
@@ -178,6 +224,7 @@ class Mrtpnp extends AUTH_Controller {
 				$index = 0;
 				foreach ($sheetData as $key => $value) {
 					if ($key != 1) {
+<<<<<<< HEAD
 						$check = $this->M_mrtpnp->check_pnp($value['B']);
 
 						if ($check != 1) {
@@ -186,6 +233,12 @@ class Mrtpnp extends AUTH_Controller {
 							$resultData[$index]['tanggal'] = ucwords($value['D']);
 							$resultData[$index]['id_stasiun'] = ucwords($value['B']);
 							$resultData[$index]['status'] = ucwords($value['E']);
+=======
+						$check = $this->M_mrtpnp->check_nama($value['B']);
+
+						if ($check != 1) {
+							$resultData[$index]['nama'] = ucwords($value['B']);
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 						}
 					}
 					$index++;
@@ -194,6 +247,7 @@ class Mrtpnp extends AUTH_Controller {
 				unlink('./assets/excel/' .$data['file_name']);
 
 				if (count($resultData) != 0) {
+<<<<<<< HEAD
 					$result = $this->M_mrtpnp->insert_batch($resultData);
 					if ($result > 0) {
 						$this->session->set_flashdata('msg', show_succ_msg('Data Penumpang Mrt Berhasil diimport ke database'));
@@ -202,6 +256,16 @@ class Mrtpnp extends AUTH_Controller {
 				} else {
 					$this->session->set_flashdata('msg', show_msg('Data Penumpang Gagal diimport ke database (Data Sudah terupdate)', 'warning', 'fa-warning'));
 					redirect('Mrtpnp');
+=======
+					$result = $this->M_mrt->insert_batch($resultData);
+					if ($result > 0) {
+						$this->session->set_flashdata('msg', show_succ_msg('Data Kota Berhasil diimport ke database'));
+						redirect('Kota');
+					}
+				} else {
+					$this->session->set_flashdata('msg', show_msg('Data Kota Gagal diimport ke database (Data Sudah terupdate)', 'warning', 'fa-warning'));
+					redirect('Kota');
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 				}
 
 			}
@@ -209,5 +273,10 @@ class Mrtpnp extends AUTH_Controller {
 	}
 }
 
+<<<<<<< HEAD
 /* End of file Mrtpnp.php */
 /* Location: ./application/controllers/Mrtpnp.php */
+=======
+/* End of file Kota.php */
+/* Location: ./application/controllers/Kota.php */
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e

@@ -43,6 +43,7 @@ class M_mrtpnp extends CI_Model {
 		return $data->result();
 	}
 
+<<<<<<< HEAD
 
 	public function insert($data) {
 		$sql = "INSERT INTO mrtpnp VALUES('" .$data['id'] ."','" .$data['pnp'] ."','" .$data['tanggal'] ."'	,'" .$data['id_stasiun'] ."', status=1)";
@@ -50,6 +51,20 @@ class M_mrtpnp extends CI_Model {
 		$this->db->query($sql);
 
 		return $this->db->affected_rows();
+=======
+	public function insert($data) {
+		$table      = 'mrtpnp';
+		$data = array(
+			//tabel di database => name di form
+			'id'            => $this->input->post('id', TRUE),
+			'pnp'            => $this->input->post('pnp', TRUE),
+			'id_stasiun'            => $this->input->post('id_stasiun', TRUE),
+			'tanggal'           => $this->input->post('tanggal', TRUE),
+			'status' =>1,
+			);
+			$this->db->insert('mrtpnp', $data);
+			return $this->db->affected_rows();
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 	}
 
 	public function insert_batch($data) {
@@ -74,8 +89,13 @@ class M_mrtpnp extends CI_Model {
 		return $this->db->affected_rows();
 	}
 
+<<<<<<< HEAD
 	public function check_pnp($nama) {
 		$this->db->where('id', $nama);
+=======
+	public function check_nama($nama) {
+		$this->db->where('nama', $nama);
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 		$data = $this->db->get('mrtpnp');
 
 		return $data->num_rows();

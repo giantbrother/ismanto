@@ -30,6 +30,7 @@ class Kci extends AUTH_Controller {
 		$this->form_validation->set_rules('id', 'id', 'trim|required');	
 		$this->form_validation->set_rules('nama', 'nama', 'trim|required');	
 		
+<<<<<<< HEAD
 		$data 	= $this->input->post();
 		if ($this->form_validation->run() == TRUE) {
 			$result = $this->M_kci->insert($data);
@@ -48,17 +49,42 @@ class Kci extends AUTH_Controller {
 		echo json_encode($out);
 	}
 	
+=======
+		$data = $this->input->post();
+		if (!empty($this->input->post('id')) 
+			&& !empty($this->input->post('nama'))) {
+			$result = $this->M_kci->insert($data);
+			if ($result > 0) {
+				$out['msg'] = show_succ_msg('Data Input Berhasil ditambahkan', '20px');
+			} else {
+				$out['msg'] = show_err_msg('Data Input Gagal ditambahkan', '20px');
+			}
+		} else {
+			$out['msg'] = 'Data tidak boleh kosong';
+		}
+		$this->session->set_flashdata('error', $out['msg']);
+		redirect(base_url('kci'));
+	}
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 	public function update() {
 		$data['userdata'] 	= $this->userdata;
 
 		$id 				= trim($_POST['id']);
 		$data['dataKci'] 	= $this->M_kci->select_by_id($id);
+<<<<<<< HEAD
 		$data['datast'] 	= $this->M_kci->cari_st($id);
+=======
+
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 		echo show_my_modal('modals/modal_update_kci', 'update-kci', $data);
 	}
 
 	public function prosesUpdate() {
+<<<<<<< HEAD
 		$this->form_validation->set_rules('nama', 'nama', 'trim|required');
+=======
+		$this->form_validation->set_rules('kci', 'Kci', 'trim|required');
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 
 		$data 	= $this->input->post();
 		if ($this->form_validation->run() == TRUE) {
@@ -94,9 +120,15 @@ class Kci extends AUTH_Controller {
 		$data['userdata'] 	= $this->userdata;
 
 		$id 				= trim($_POST['id']);
+<<<<<<< HEAD
 		$data['kci'] = $this->M_kci->select_by_id($id);
 		$data['jumlahKci'] = $this->M_kci->total_rows();
 		$data['dataKci'] = $this->M_kci->select_by_stasiun($id);
+=======
+		$data['KCI'] = $this->M_kci->select_by_id($id);
+		$data['jumlahKci'] = $this->M_kci->total_rows();
+		$data['dataKci'] = $this->M_kci->select_by_input($id);
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 
 		echo show_my_modal('modals/modal_detail_kci', 'detail-kci', $data, 'lg');
 	}
@@ -123,10 +155,17 @@ class Kci extends AUTH_Controller {
 		} 
 
 		$objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel); 
+<<<<<<< HEAD
 		$objWriter->save('./assets/excel/Data Stasiun Kci.xlsx'); 
 
 		$this->load->helper('download');
 		force_download('./assets/excel/Data Stasiun Kci.xlsx', NULL);
+=======
+		$objWriter->save('./assets/excel/Data Kci.xlsx'); 
+
+		$this->load->helper('download');
+		force_download('./assets/excel/Data Kci.xlsx', NULL);
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 	}
 
 	public function import() {
@@ -158,10 +197,16 @@ class Kci extends AUTH_Controller {
 				$index = 0;
 				foreach ($sheetData as $key => $value) {
 					if ($key != 1) {
+<<<<<<< HEAD
 						$check = $this->M_kci->check_pnp($value['B']);
 
 						if ($check != 1) {
 							$resultData[$index]['id'] = ucwords($value['A']);
+=======
+						$check = $this->M_kci->check_nama($value['B']);
+
+						if ($check != 1) {
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 							$resultData[$index]['nama'] = ucwords($value['B']);
 						}
 					}

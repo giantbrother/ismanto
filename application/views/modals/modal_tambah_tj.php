@@ -7,7 +7,11 @@
   <div class="alert alert-danger"><?= $this->session->flashdata('message'); ?></div>
     <div class="input-group form-group">
       <span class="input-group-addon" id="sizing-addon2">
+<<<<<<< HEAD
         <i class="glyphicon glyphicon-pencil"></i>
+=======
+        <i class="glyphicon glyphicon-user"></i>
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
       </span>
       <input type="text" class="form-control" placeholder="Register" name="id" value="<?php echo getId('tj','id'); ?>" aria-describedby="sizing-addon2">
     </div>

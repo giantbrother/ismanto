@@ -13,12 +13,15 @@
 		tampilLrt();
 		tampilKci();
 		tampilMrtpnp();
+<<<<<<< HEAD
 		tampilLrtpnp();
 		tampilKcipnp();
 		tampilRailinkpnp();
 		tampilTransjakarta();
 		tampilTransjakartapnp();
 		tampilPeraturan();
+=======
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 		<?php
 			if ($this->session->flashdata('msg') != '') {
 				echo "effect_msg();";
@@ -41,8 +44,11 @@
 		$('.msg').show(1000);
 		setTimeout(function() { $('.msg').fadeOut(1000); }, 3000);
 	}
+<<<<<<< HEAD
 	
 	//MRT
+=======
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 
 	function tampilMrt() {
 		$.get('<?php echo base_url('Mrt/tampil'); ?>', function(data) {
@@ -52,12 +58,21 @@
 		});
 	}
 
+<<<<<<< HEAD
 	var idnye;
 	$(document).on("click", ".konfirmasiHapus-mrt", function() {
 		id = $(this).attr("data-id");
 	})
 	$(document).on("click", ".hapus-datamrt", function() {
 		var idnye = id;
+=======
+	var id;
+	$(document).on("click", ".konfirmasiHapus-mrt", function() {
+		id = $(this).attr("data-id");
+	})
+	$(document).on("click", ".hapus-dataMrt", function() {
+		var id = id;
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 		
 		$.ajax({
 			method: "POST",
@@ -106,7 +121,10 @@
 				$('#tambah-mrt').modal('hide');
 				$('.msg').html(out.msg);
 				effect_msg();
+<<<<<<< HEAD
 				
+=======
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 			}
 		})
 		
@@ -175,7 +193,10 @@
 	
 
 	//Lrt
+<<<<<<< HEAD
 	
+=======
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 	function tampilLrt() {
 		$.get('<?php echo base_url('Lrt/tampil'); ?>', function(data) {
 			MyTable.fnDestroy();
@@ -184,12 +205,21 @@
 		});
 	}
 
+<<<<<<< HEAD
 	var idnye;
 	$(document).on("click", ".konfirmasiHapus-lrt", function() {
 		id = $(this).attr("data-id");
 	})
 	$(document).on("click", ".hapus-datalrt", function() {
 		var idnye = id;
+=======
+	var id;
+	$(document).on("click", ".konfirmasiHapus-lrt", function() {
+		id = $(this).attr("data-id");
+	})
+	$(document).on("click", ".hapus-dataLrt", function() {
+		var id = id;
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 		
 		$.ajax({
 			method: "POST",
@@ -309,12 +339,21 @@
 		});
 	}
 
+<<<<<<< HEAD
 	var idnye;
 	$(document).on("click", ".konfirmasiHapus-kci", function() {
 		id = $(this).attr("data-id");
 	})
 	$(document).on("click", ".hapus-datakci", function() {
 		var idnye = id;
+=======
+	var id;
+	$(document).on("click", ".konfirmasiHapus-kci", function() {
+		id = $(this).attr("data-id");
+	})
+	$(document).on("click", ".hapus-dataKci", function() {
+		var id = id;
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 		
 		$.ajax({
 			method: "POST",
@@ -385,7 +424,10 @@
 				$('#tambah-kci').modal('hide');
 				$('.msg').html(out.msg);
 				effect_msg();
+<<<<<<< HEAD
 				
+=======
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 			}
 		})
 		
@@ -425,6 +467,7 @@
 	$('#update-kci').on('hidden.bs.modal', function () {
 	  $('.form-msg').html('');
 	})
+<<<<<<< HEAD
 	
 	
 	//Railink
@@ -682,6 +725,8 @@
 
 
 
+=======
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 
 
 	//MRT PNP
@@ -771,7 +816,10 @@
 				$('#tambah-mrtpnp').modal('hide');
 				$('.msg').html(out.msg);
 				effect_msg();
+<<<<<<< HEAD
 				window.setTimeout(function(){window.location.reload()},3000);
+=======
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 			}
 		})
 		
@@ -811,6 +859,7 @@
 	$('#update-mrtpnp').on('hidden.bs.modal', function () {
 	  $('.form-msg').html('');
 	})
+<<<<<<< HEAD
 	
 		//LRT PNP
 
@@ -1458,4 +1507,6 @@
 	
 	
 	
+=======
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 </script>

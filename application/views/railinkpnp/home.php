@@ -33,7 +33,11 @@
             ?>
             <tr>
               <td><?php echo $no; ?></td>
+<<<<<<< HEAD
               <td><?php echo $railinkpnp->nama; ?></td>
+=======
+              <td><?php echo $railinkpnp->id_stasiun; ?></td>
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
               <td><?php echo $railinkpnp->tanggal; ?></td>
               <td><?php echo $railinkpnp->pnp; ?></td>
               <td class="text-center" style="min-width:230px;">
@@ -56,7 +60,11 @@
 
 <div id="tempat-modal"></div>
 
+<<<<<<< HEAD
 <?php show_my_confirm('konfirmasiHapus', 'hapus-datarailinkpnp', 'Hapus Data Ini?', 'Ya, Hapus Data Ini'); ?>
+=======
+<?php show_my_confirm('konfirmasiHapus', 'hapus-dataRailinkpnp', 'Hapus Data Ini?', 'Ya, Hapus Data Ini'); ?>
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 <?php
   $data['judul'] = 'Penumpang Railink';
   $data['url'] = 'railinkpnp/import';

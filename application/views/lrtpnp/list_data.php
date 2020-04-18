@@ -3,10 +3,15 @@
   foreach ($dataLrtpnp as $lrtpnp) {
     ?>
     <tr>
+<<<<<<< HEAD
      <td><?php echo $no; ?></td>
      <td><?php echo $lrtpnp->nama; ?></td>
      <td><?php echo $lrtpnp->tanggal; ?></td>
      <td><?php echo $lrtpnp->pnp; ?></td>
+=======
+      <td><?php echo $no; ?></td>
+      <td><?php echo $lrtpnp->nama; ?></td>
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
       <td class="text-center" style="min-width:230px;">
         <button class="btn btn-warning update-dataLrtpnp" data-id="<?php echo $lrtpnp->id; ?>"><i class="glyphicon glyphicon-repeat"></i> Update</button>
         <button class="btn btn-danger konfirmasiHapus-lrtpnp" data-id="<?php echo $lrtpnp->id; ?>" data-toggle="modal" data-target="#konfirmasiHapus"><i class="glyphicon glyphicon-remove-sign"></i> Delete</button>

@@ -27,12 +27,17 @@ class Railink extends AUTH_Controller {
 		$data['dataRailink'] = $this->M_railink->select_all();
 		$this->load->view('railink/list_data', $data);
 	}
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 	public function prosesTambah() {
 		
 		$this->form_validation->set_rules('id', 'id', 'trim|required');	
 		$this->form_validation->set_rules('nama', 'nama', 'trim|required');	
 		
+<<<<<<< HEAD
 		
 		$data 	= $this->input->post();
 		if ($this->form_validation->run() == TRUE) {
@@ -52,18 +57,42 @@ class Railink extends AUTH_Controller {
 		echo json_encode($out);
 	}
 	
+=======
+		$data = $this->input->post();
+		if (!empty($this->input->post('id')) 
+			&& !empty($this->input->post('nama'))) {
+			$result = $this->M_railink->insert($data);
+			if ($result > 0) {
+				$out['msg'] = show_succ_msg('Data Input Berhasil ditambahkan', '20px');
+			} else {
+				$out['msg'] = show_err_msg('Data Input Gagal ditambahkan', '20px');
+			}
+		} else {
+			$out['msg'] = 'Data tidak boleh kosong';
+		}
+		$this->session->set_flashdata('error', $out['msg']);
+		redirect(base_url('railink'));
+	}
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 	public function update() {
 		$data['userdata'] 	= $this->userdata;
 
 		$id 				= trim($_POST['id']);
 		$data['dataRailink'] 	= $this->M_railink->select_by_id($id);
+<<<<<<< HEAD
 		$data['datast'] 	= $this->M_railink->cari_st($id);
+=======
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 
 		echo show_my_modal('modals/modal_update_railink', 'update-railink', $data);
 	}
 
 	public function prosesUpdate() {
+<<<<<<< HEAD
 		$this->form_validation->set_rules('nama', 'nama', 'trim|required');
+=======
+		$this->form_validation->set_rules('railink', 'railink', 'trim|required');
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 
 		$data 	= $this->input->post();
 		if ($this->form_validation->run() == TRUE) {
@@ -99,9 +128,15 @@ class Railink extends AUTH_Controller {
 		$data['userdata'] 	= $this->userdata;
 
 		$id 				= trim($_POST['id']);
+<<<<<<< HEAD
 		$data['railink'] = $this->M_railink->select_by_detail($id);
 		$data['jumlahRailink'] = $this->M_railink->total_rows();
 		$data['dataRailink'] = $this->M_railink->select_by_stasiun($id);
+=======
+		$data['railink'] = $this->M_railink->select_by_id($id);
+		$data['jumlahRailink'] = $this->M_railink->total_rows();
+		$data['dataRailink'] = $this->M_railink->select_by_pegawai($id);
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 
 		echo show_my_modal('modals/modal_detail_railink', 'detail-railink', $data, 'lg');
 	}
@@ -128,10 +163,17 @@ class Railink extends AUTH_Controller {
 		} 
 
 		$objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel); 
+<<<<<<< HEAD
 		$objWriter->save('./assets/excel/Data Stasiun Railink.xlsx'); 
 
 		$this->load->helper('download');
 		force_download('./assets/excel/Data Stasiun Railink.xlsx', NULL);
+=======
+		$objWriter->save('./assets/excel/Data Stasiun.xlsx'); 
+
+		$this->load->helper('download');
+		force_download('./assets/excel/Data Stasiun.xlsx', NULL);
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 	}
 
 	public function import() {
@@ -163,10 +205,16 @@ class Railink extends AUTH_Controller {
 				$index = 0;
 				foreach ($sheetData as $key => $value) {
 					if ($key != 1) {
+<<<<<<< HEAD
 						$check = $this->M_railink->check_pnp($value['B']);
 
 						if ($check != 1) {
 							$resultData[$index]['id'] = ucwords($value['A']);
+=======
+						$check = $this->M_railink->check_nama($value['B']);
+
+						if ($check != 1) {
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 							$resultData[$index]['nama'] = ucwords($value['B']);
 						}
 					}
@@ -178,12 +226,21 @@ class Railink extends AUTH_Controller {
 				if (count($resultData) != 0) {
 					$result = $this->M_railink->insert_batch($resultData);
 					if ($result > 0) {
+<<<<<<< HEAD
 						$this->session->set_flashdata('msg', show_succ_msg('Data Railink Berhasil diimport ke database'));
 						redirect('Railink');
 					}
 				} else {
 					$this->session->set_flashdata('msg', show_msg('Data Railink Gagal diimport ke database (Data Sudah terupdate)', 'warning', 'fa-warning'));
 					redirect('Railink');
+=======
+						$this->session->set_flashdata('msg', show_succ_msg('Data Lrt Berhasil diimport ke database'));
+						redirect('Lrt');
+					}
+				} else {
+					$this->session->set_flashdata('msg', show_msg('Data Lrt Gagal diimport ke database (Data Sudah terupdate)', 'warning', 'fa-warning'));
+					redirect('Lrt');
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 				}
 
 			}

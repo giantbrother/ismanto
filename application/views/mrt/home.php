@@ -56,9 +56,16 @@
 
 <div id="tempat-modal"></div>
 
+<<<<<<< HEAD
 <?php show_my_confirm('konfirmasiHapus', 'hapus-datamrt', 'Hapus Data Ini?', 'Ya, Hapus Data Ini'); ?>
 <?php
   $data['judul'] = 'Mrt';
   $data['url'] = 'mrt/import';
+=======
+<?php show_my_confirm('konfirmasiHapus', 'hapus-dataMrt', 'Hapus Data Ini?', 'Ya, Hapus Data Ini'); ?>
+<?php
+  $data['judul'] = 'Mrt';
+  $data['url'] = 'Mrt/import';
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
   echo show_my_modal('modals/modal_import', 'import-mrt', $data);
 ?>

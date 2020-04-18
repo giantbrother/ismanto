@@ -76,9 +76,15 @@ $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
+<<<<<<< HEAD
 	'username' => 'ismantoi_test',
 	'password' => 'Cctv2017 ',
 	'database' => 'ismantoi_test',
+=======
+	'username' => 'root',
+	'password' => 'Cctv2017',
+	'database' => 'cendana',
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

@@ -27,7 +27,11 @@
   <body class="hold-transition login-page">
     <div class="login-box">
       <div class="login-logo">
+<<<<<<< HEAD
         <a href="<?php echo base_url(); ?>assets/index2.html"><b>Bidang</b>Perkeretaapian</a>
+=======
+        <a href="<?php echo base_url(); ?>assets/index2.html"><b>Bidang</b>Perkeretaapi</a>
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
       </div>
 
       <!-- /.login-logo -->

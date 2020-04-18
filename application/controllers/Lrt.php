@@ -11,7 +11,11 @@ class Lrt extends AUTH_Controller {
 		$data['userdata'] 	= $this->userdata;
 		$data['dataLrt'] 	= $this->M_lrt->select_all();
 
+<<<<<<< HEAD
 		$data['page'] 		= "Stasiun";
+=======
+		$data['page'] 		= "Rute";
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 		$data['judul'] 		= "Data LRT";
 		$data['deskripsi'] 	= "List Data Stasiun LRT";
 
@@ -33,6 +37,7 @@ class Lrt extends AUTH_Controller {
 		$this->form_validation->set_rules('id', 'id', 'trim|required');	
 		$this->form_validation->set_rules('nama', 'nama', 'trim|required');	
 		
+<<<<<<< HEAD
 		$data 	= $this->input->post();
 		if ($this->form_validation->run() == TRUE) {
 			$result = $this->M_lrt->insert($data);
@@ -51,17 +56,42 @@ class Lrt extends AUTH_Controller {
 		echo json_encode($out);
 	}
 	
+=======
+		$data = $this->input->post();
+		if (!empty($this->input->post('id')) 
+			&& !empty($this->input->post('nama'))) {
+			$result = $this->M_lrt->insert($data);
+			if ($result > 0) {
+				$out['msg'] = show_succ_msg('Data Input Berhasil ditambahkan', '20px');
+			} else {
+				$out['msg'] = show_err_msg('Data Input Gagal ditambahkan', '20px');
+			}
+		} else {
+			$out['msg'] = 'Data tidak boleh kosong';
+		}
+		$this->session->set_flashdata('error', $out['msg']);
+		redirect(base_url('lrt'));
+	}
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 	public function update() {
 		$data['userdata'] 	= $this->userdata;
 
 		$id 				= trim($_POST['id']);
 		$data['dataLrt'] 	= $this->M_lrt->select_by_id($id);
+<<<<<<< HEAD
 $data['datast'] 	= $this->M_lrt->cari_st($id);
+=======
+
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 		echo show_my_modal('modals/modal_update_lrt', 'update-lrt', $data);
 	}
 
 	public function prosesUpdate() {
+<<<<<<< HEAD
 		$this->form_validation->set_rules('nama', 'nama', 'trim|required');
+=======
+		$this->form_validation->set_rules('lrt', 'Lrt', 'trim|required');
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 
 		$data 	= $this->input->post();
 		if ($this->form_validation->run() == TRUE) {
@@ -99,7 +129,11 @@ $data['datast'] 	= $this->M_lrt->cari_st($id);
 		$id 				= trim($_POST['id']);
 		$data['lrt'] = $this->M_lrt->select_by_id($id);
 		$data['jumlahLrt'] = $this->M_lrt->total_rows();
+<<<<<<< HEAD
 		$data['dataLrt'] = $this->M_lrt->select_by_stasiun($id);
+=======
+		$data['dataLrt'] = $this->M_lrt->select_by_pegawai($id);
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 
 		echo show_my_modal('modals/modal_detail_lrt', 'detail-lrt', $data, 'lg');
 	}
@@ -126,10 +160,17 @@ $data['datast'] 	= $this->M_lrt->cari_st($id);
 		} 
 
 		$objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel); 
+<<<<<<< HEAD
 		$objWriter->save('./assets/excel/Data StasiunLrt.xlsx'); 
 
 		$this->load->helper('download');
 		force_download('./assets/excel/Data StasiunLrt.xlsx', NULL);
+=======
+		$objWriter->save('./assets/excel/Data Stasiun.xlsx'); 
+
+		$this->load->helper('download');
+		force_download('./assets/excel/Data Stasiun.xlsx', NULL);
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 	}
 
 	public function import() {
@@ -161,10 +202,16 @@ $data['datast'] 	= $this->M_lrt->cari_st($id);
 				$index = 0;
 				foreach ($sheetData as $key => $value) {
 					if ($key != 1) {
+<<<<<<< HEAD
 						$check = $this->M_lrt->check_pnp($value['B']);
 
 						if ($check != 1) {
 							$resultData[$index]['id'] = ucwords($value['A']);
+=======
+						$check = $this->M_lrt->check_nama($value['B']);
+
+						if ($check != 1) {
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 							$resultData[$index]['nama'] = ucwords($value['B']);
 						}
 					}

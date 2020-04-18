@@ -1,9 +1,15 @@
 <div class="col-md-offset-1 col-md-10 col-md-offset-1 well">
   <div class="form-msg"></div>
   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+<<<<<<< HEAD
   <h3 style="display:block; text-align:center;">Tambah Data Penumpang Lrt</h3>
 
   <form id="form-tambah-lrtpnp" method="POST" action="<?= base_url('lrtpnp/update') ?>">
+=======
+  <h3 style="display:block; text-align:center;">Tambah Data Pegawai</h3>
+
+  <form id="form-tambah-lrtpnp" method="POST" action="<?= base_url('lrtpnp/prosestambah') ?>">
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
   <div class="alert alert-danger"><?= $this->session->flashdata('message'); ?></div>
     <div class="input-group form-group">
       <span class="input-group-addon" id="sizing-addon2">

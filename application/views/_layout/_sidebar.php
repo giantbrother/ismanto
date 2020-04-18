@@ -39,7 +39,10 @@
             <li><a class="nav-link" href="<?php echo base_url().('Lrtpnp');?>"><i class="fa fa-circle-o"></i>Input Penumpang LRT</a></li>
 			<li><a class="nav-link" href="<?php echo base_url('Kcipnp'); ?>"><i class="fa fa-circle-o"></i> Input Penumpang KCI</a></li>
 			<li><a class="nav-link" href="<?php echo base_url('Railinkpnp'); ?>"><i class="fa fa-circle-o"></i> Input Penumpang Railink</a></li>
+<<<<<<< HEAD
 			<li><a class="nav-link" href="<?php echo base_url('Transjakartapnp'); ?>"><i class="fa fa-circle-o"></i> Input Penumpang Transjakarta</a></li>
+=======
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 			
 
 		  </ul>
@@ -57,7 +60,11 @@
             <li><a class="nav-link" href="<?php echo base_url('Laporan'); ?>"><i class="fa fa-circle-o"></i> Laporan</a></li>
 			 <li><a class="nav-link" href="<?php echo base_url('Grafik'); ?>"><i class="fa fa-circle-o"></i> Grafik</a></li>
           <li><a class="nav-link" href="<?php echo base_url('Grafik1'); ?>"><i class="fa fa-circle-o"></i> Grafik1</a></li>
+<<<<<<< HEAD
 			<li><a class="nav-link" href="<?php echo base_url('Grafik2'); ?>"><i class="fa fa-circle-o"></i> Grafik2</a></li>
+=======
+			
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 
 		  </ul>
         </li>
@@ -98,12 +105,18 @@
         </a>
       </li>
 	  
+<<<<<<< HEAD
 	        <li <?php if ($page == 'transjakarta') {echo 'class="active"';} ?>>
         <a href="<?php echo base_url('Transjakarta'); ?>">
+=======
+	        <li <?php if ($page == 'tj') {echo 'class="active"';} ?>>
+        <a href="<?php echo base_url('Tj'); ?>">
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
         <i class="fa fa-train" aria-hidden="true"></i>
           <span>DB Transjakarta</span>
         </a>
       </li>
+<<<<<<< HEAD
 	  
 	  	<li <?php if ($page == 'peraturan') {echo 'class="active"';} ?>>
         <a href="<?php echo base_url('Peraturan'); ?>">
@@ -111,6 +124,8 @@
           <span>Peraturan</span>
         </a>
       </li>
+=======
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 
 
       <li <?php if ($page == 'cctv') {echo 'class="active"';} ?>>

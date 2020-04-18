@@ -1,16 +1,26 @@
 <?php
 
 error_reporting(0);
+<<<<<<< HEAD
 $koneksi = mysqli_connect("localhost","ismantoi_test","Cctv2017 ") or die("Koneksi Gagal !" . mysqli_error());
 mysqli_select_db($koneksi,"ismantoi_test");
 
 $db = mysqli_select_db ($koneksi,"ismantoi_test") or die ("database tidak ada!". mysqli_error());
+=======
+$koneksi = mysqli_connect("localhost","root","Cctv2017") or die("Koneksi Gagal !" . mysqli_error());
+mysqli_select_db($koneksi,"cendana");
+
+$db = mysqli_select_db ($koneksi,"cendana") or die ("database tidak ada!". mysqli_error());
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 echo "<br />";
 ?>
 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 <?php
    $url=$_SERVER['REQUEST_URI'];
    header("Refresh: 10; URL=$url");

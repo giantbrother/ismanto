@@ -11,9 +11,15 @@ class Kcipnp extends AUTH_Controller {
 		$data['userdata'] 	= $this->userdata;
 		$data['dataKcipnp'] 	= $this->M_kcipnp->select_all();
 
+<<<<<<< HEAD
 		$data['page'] 		= "KCI";
 		$data['judul'] 		= "Data Pnp KCI";
 		$data['deskripsi'] 	= "List Data Penumpang KCI";
+=======
+		$data['page'] 		= "Rute";
+		$data['judul'] 		= "Data Pnp KCI";
+		$data['deskripsi'] 	= "List Data Penumpang LRT";
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 
 		$data['modal_tambah_kcipnp'] = show_my_modal('modals/modal_tambah_kcipnp', 'tambah-kcipnp', $data);
 
@@ -36,6 +42,7 @@ class Kcipnp extends AUTH_Controller {
 		$this->form_validation->set_rules('id', 'id', 'trim|required');
 		$this->form_validation->set_rules('id_stasiun', 'id_stasiun', 'trim|required');
 		
+<<<<<<< HEAD
 		$data 	= $this->input->post();
 		if ($this->form_validation->run() == TRUE) {
 			$result = $this->M_kcipnp->insert($data);
@@ -52,6 +59,24 @@ class Kcipnp extends AUTH_Controller {
 		}
 
 		echo json_encode($out);
+=======
+		$data = $this->input->post();
+		if (!empty($this->input->post('pnp')) 
+			&& !empty($this->input->post('tanggal')) 
+			&& !empty($this->input->post('id'))
+			&& !empty($this->input->post('id_stasiun'))) {
+			$result = $this->M_kcipnp->insert($data);
+			if ($result > 0) {
+				$out['msg'] = show_succ_msg('Data Input Berhasil ditambahkan', '20px');
+			} else {
+				$out['msg'] = show_err_msg('Data Input Gagal ditambahkan', '20px');
+			}
+		} else {
+			$out['msg'] = 'Data tidak boleh kosong';
+		}
+		$this->session->set_flashdata('error', $out['msg']);
+		redirect(base_url('kcipnp'));
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 	}
 
 
@@ -60,15 +85,23 @@ class Kcipnp extends AUTH_Controller {
 
 		$id 				= trim($_POST['id']);
 		$data['dataKcipnp'] 	= $this->M_kcipnp->select_by_id($id);
+<<<<<<< HEAD
 		$data['datast'] 	= $this->M_kcipnp->cari_st($id);
+=======
+
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 		echo show_my_modal('modals/modal_update_kcipnp', 'update-kcipnp', $data);
 	}
 
 	public function prosesUpdate() {
+<<<<<<< HEAD
 		$this->form_validation->set_rules('pnp', 'pnp', 'trim|required');	
 		$this->form_validation->set_rules('tanggal', 'tanggal', 'trim|required');	
 		//$this->form_validation->set_rules('id_stasiun', 'id', 'trim|required');
 		//$this->form_validation->set_rules('id', 'idnye', 'trim|required');
+=======
+		$this->form_validation->set_rules('nama', 'Nama', 'trim|required');
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 
 		$data 	= $this->input->post();
 		if ($this->form_validation->run() == TRUE) {
@@ -76,10 +109,17 @@ class Kcipnp extends AUTH_Controller {
 
 			if ($result > 0) {
 				$out['status'] = '';
+<<<<<<< HEAD
 				$out['msg'] = show_succ_msg('Data  Berhasil diupdate', '20px');
 			} else {
 				$out['status'] = '';
 				$out['msg'] = show_succ_msg('Data  Gagal diupdate', '20px');
+=======
+				$out['msg'] = show_succ_msg('Data Nama Berhasil diupdate', '20px');
+			} else {
+				$out['status'] = '';
+				$out['msg'] = show_succ_msg('Data Nama Gagal diupdate', '20px');
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 			}
 		} else {
 			$out['status'] = 'form';
@@ -104,11 +144,19 @@ class Kcipnp extends AUTH_Controller {
 		$data['userdata'] 	= $this->userdata;
 
 		$id 				= trim($_POST['id']);
+<<<<<<< HEAD
 		$data['kcipnp'] = $this->M_kcipnp->select_by_detail($id);
 		$data['jumlahKcipnp'] = $this->M_kcipnp->total_rows();
 		$data['dataKcipnp'] = $this->M_kcipnp->select_by_stasiun($id);
 
 		echo show_my_modal('modals/modal_detail_kcipnp', 'detail-kcipnp', $data, 'lg');
+=======
+		$data['kcipnp'] = $this->M_kcipnp->select_by_id($id);
+		$data['jumlahKcipnp'] = $this->M_kcipnp->total_rows();
+		$data['dataKcipnp'] = $this->M_kcipnp->select_by_stasiun($id);
+
+		echo show_my_modal('modals/modal_detail_lrt', 'detail-lrt', $data, 'lg');
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 	}
 
 	public function export() {
@@ -124,16 +172,23 @@ class Kcipnp extends AUTH_Controller {
 
 		$objPHPExcel->getActiveSheet()->SetCellValue('A1', "ID"); 
 		$objPHPExcel->getActiveSheet()->SetCellValue('B1', "Nama Stasiun");
+<<<<<<< HEAD
 		$objPHPExcel->getActiveSheet()->SetCellValue('C1', "Jumlah Penumpang");
 		$objPHPExcel->getActiveSheet()->SetCellValue('D1', "Tanggal");
 
+=======
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 
 		$rowCount = 2;
 		foreach($data as $value){
 		    $objPHPExcel->getActiveSheet()->SetCellValue('A'.$rowCount, $value->id); 
+<<<<<<< HEAD
 		    $objPHPExcel->getActiveSheet()->SetCellValue('B'.$rowCount, $value->id_stasiun);
 			$objPHPExcel->getActiveSheet()->SetCellValue('C'.$rowCount, $value->pnp); 
 			$objPHPExcel->getActiveSheet()->SetCellValue('D'.$rowCount, $value->tanggal);  
+=======
+		    $objPHPExcel->getActiveSheet()->SetCellValue('B'.$rowCount, $value->nama); 
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 		    $rowCount++; 
 		} 
 
@@ -173,6 +228,7 @@ class Kcipnp extends AUTH_Controller {
 				$index = 0;
 				foreach ($sheetData as $key => $value) {
 					if ($key != 1) {
+<<<<<<< HEAD
 						$check = $this->M_kcipnp->check_pnp($value['B']);
 
 						if ($check != 1) {
@@ -181,6 +237,12 @@ class Kcipnp extends AUTH_Controller {
 							$resultData[$index]['tanggal'] = ucwords($value['D']);
 							$resultData[$index]['id_stasiun'] = ucwords($value['B']);
 							$resultData[$index]['status'] = ucwords($value['E']);
+=======
+						$check = $this->M_kcipnp->check_nama($value['B']);
+
+						if ($check != 1) {
+							$resultData[$index]['nama'] = ucwords($value['B']);
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 						}
 					}
 					$index++;
@@ -191,11 +253,19 @@ class Kcipnp extends AUTH_Controller {
 				if (count($resultData) != 0) {
 					$result = $this->M_kcipnp->insert_batch($resultData);
 					if ($result > 0) {
+<<<<<<< HEAD
 						$this->session->set_flashdata('msg', show_succ_msg('Data Kcipnp Berhasil diimport ke database'));
 						redirect('Kcipnp');
 					}
 				} else {
 					$this->session->set_flashdata('msg', show_msg('Data Kcipnp Gagal diimport ke database (Data Sudah terupdate)', 'warning', 'fa-warning'));
+=======
+						$this->session->set_flashdata('msg', show_succ_msg('Data Lrt Berhasil diimport ke database'));
+						redirect('Kcipnp');
+					}
+				} else {
+					$this->session->set_flashdata('msg', show_msg('Data Lrt Gagal diimport ke database (Data Sudah terupdate)', 'warning', 'fa-warning'));
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
 					redirect('Kcipnp');
 				}
 

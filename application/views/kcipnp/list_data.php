@@ -4,7 +4,11 @@
             ?>
             <tr>
               <td><?php echo $no; ?></td>
+<<<<<<< HEAD
               <td><?php echo $kcipnp->nama; ?></td>
+=======
+              <td><?php echo $kcipnp->id_stasiun; ?></td>
+>>>>>>> 28c79abe5e7e997bdcec84fa42eed627bf20136e
               <td><?php echo $kcipnp->tanggal; ?></td>
               <td><?php echo $kcipnp->pnp; ?></td>
               <td class="text-center" style="min-width:230px;">
